@@ -32,7 +32,6 @@ const changeColor = (event) => {
   event.target.style.backgroundColor = 'green';
 }
 
-const changeColorBackground = () => {
-  const divs = document.querySelectorAll('.grid-container');
-  divs.style.backgroundColor = 'red';
+const changeColorRandom = (event) => {
+  const event = gridElement.addEventListener('mouseover', changeColor);
 }
