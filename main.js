@@ -1,13 +1,16 @@
+const size = 30;
 
+createGrid(size);
 
-
-
+const gridContainer = document.querySelector('.grid-container'); 
+const squares = gridContainer.querySelectorAll('div');
 
 
 // we pass and event from mouseover to this function to change color of grid
 
 const changeSize = (input) => {
   createGrid(input)
+  colorSquares();
 }
 
 // This function create a grid based on the size we chooose.
@@ -21,10 +24,7 @@ function createGrid(size) {
     gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
     gridContainer.appendChild(gridElement);
-    gridElement.classList.add('grid-element');
-    gridElement.addEventListener('mouseover', changeColor);
-    gridElement.addEventListener('mousedown', changeColor); 
-    gridElement.style.backgroundColor ='grey';
+    gridElement.classList.add('grid-element');      
   }
 }
 
@@ -32,6 +32,40 @@ const changeColor = (event) => {
   event.target.style.backgroundColor = 'green';
 }
 
-const changeColorRandom = (event) => {
-  const event = gridElement.addEventListener('mouseover', changeColor);
+const reset = () => {
+  let grid = document.querySelector('.grid-container');
+  let squares = grid.querySelectorAll('div');
+
+  squares.forEach((div) => {
+    div.style.backgroundColor = 'white';
+  })
 }
+
+const changeBackground = () => {
+  let grid = document.querySelector('.grid-container');
+  let squares = grid.querySelectorAll('div');
+
+  squares.forEach((div) => {
+    div.style.backgroundColor = 'blue';
+  })
+}
+
+const colorSquares = () => {
+  let grid = document.querySelector('.grid-container');
+  let squares = grid.querySelectorAll('div');
+  
+  squares.forEach((div) => {
+    div.addEventListener('mousedown', changeColor);
+    div.addEventListener('mouseover', changeColor);
+    })
+}
+
+const randomColor = () => {
+  let grid = document.querySelector('.grid-container');
+  let squares = grid.querySelectorAll('div');
+  squares.forEach((div) => {
+    div.addEventListener('mouseover', changeColor);
+  })
+}
+
+createGrid(size);
