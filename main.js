@@ -6,9 +6,6 @@ let newColor = defaultColor;
 let erase = false;
 
 
-
-
-
 const gridContainer = document.querySelector('.grid-container');
 const changeColorbtn = document.getElementById('changeColor');
 const rainbowColorbtn = document.getElementById('rainbowColorBtn')
@@ -18,6 +15,7 @@ const backgroundColorBtn = document.getElementById('bacgroundColorBtn');
 const colorPicker = document.getElementById('colorInput');
 const onLoad = document.querySelector('body');
 
+
 const setColor = (color) => {
   newColor = color;
 }
@@ -26,18 +24,36 @@ const setColor = (color) => {
 rainbowColorbtn.onclick = () => {
   setColor('rainbow');
   rainbow = true;
-}
-
-// sets color based on choice of the user
-colorPicker.oninput = (e) => {
-  setColor(e.target.value);
-  rainbow = false;
-  colorPicked = true;
+  colorPicked = false;
+  erase = false;
 }
 
 // This lets the user to erase the unwanted coloring of the grid
 eraseBtn.onclick = () => {
   erase = true;
+  rainbow = false;
+  colorPicked = false;
+}
+
+// This reset the grid from any coloring
+resetBtn.onclick= () => {
+  gridContainer.innerHTML = '';
+  createGrid(defaultSize);
+}
+
+
+// sets color based on choice of the user
+colorPicker.oninput = (e) => {
+  setColor(e.target.value);
+  colorPicked = true;
+  rainbow = false;
+  erase = false;
+  
+}
+
+const changeSize = (input) => {
+  createGrid(input)
+  
 }
 
 // this creates grid
@@ -54,7 +70,6 @@ function createGrid(size) {
   }
 }
 
-
 // I'm using these variable for coloring function
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
@@ -63,38 +78,27 @@ document.body.onmouseup = () => (mouseDown = false);
 // this function colors grid elements - squares
 const coloring = (e) => {
   if (e.type === 'mouseover' && !mouseDown) return
-  if (colorPicked && !rainbow && !erase) {
+  if (colorPicked) {
     e.target.style.backgroundColor = newColor;
-    console.log('1')
+    console.log(`1 rainbow: ${rainbow}, colorPicked: ${colorPicked}, erase: ${erase}`);
+
   } else if ( rainbow) {
       const randomR = Math.floor(Math.random() * 256)
       const randomG = Math.floor(Math.random() * 256)
       const randomB = Math.floor(Math.random() * 256)
       const random = `rgb(${randomR}, ${randomG}, ${randomB}`
       e.target.style.background = random;
-      console.log('2')
+      console.log(`2 rainbow: ${rainbow}, colorPicked: ${colorPicked}, erase: ${erase}`);
+
   } else if ( !colorPicked && !rainbow && !erase){
       e.target.style.backgroundColor = 'black';
-      console.log('3')
-  } else if ( erase && !rainbow ) {
+      console.log(`3 rainbow: ${rainbow}, colorPicked: ${colorPicked}, erase: ${erase}`);
+
+  } else if ( erase ) {
       e.target.style.backgroundColor = 'white';
-      console.log('4')
+      console.log(`4 rainbow: ${rainbow}, colorPicked: ${colorPicked}, erase: ${erase}`);
   }
   
-}
-
-
-
-
-const changeSize = (input) => {
-  createGrid(input)
-  
-}
-
-
-resetBtn.onclick= () => {
-  gridContainer.innerHTML = '';
-  createGrid(defaultSize);
 }
 
 // this makes sure when page is loaded Grid is created.
