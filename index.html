@@ -8,16 +8,23 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
-    <input type="text" placeholder="Number of grids" onchange="changeSize(this.value)"/>
-    <button>Enter</button>
-    <button onclick="changeColor('green')">Change Color</button>
-    <button onclick="randomColor()">Random Color</button>
-    <button onclick="reset()">Reset</button>
-    <button onclick="changeBackground()">Background Color</button>
-  </div>
+ 
   <div class="grid-container">
     
+  </div>
+  <div>
+    <input  type="text" placeholder="Number of grids" onchange="changeSize(this.value)"/>
+    <button>Enter</button>
+  </div>
+  <div>
+    <input id="colorInput" type="color" placeholder="Number of grids" onchange="changeSize(this.value)"/>
+    <button id="changeColorBtn">Change Color</button>
+  </div>
+  <div>
+    <button id="erase">Erase</button>
+    <button id="rainbowColorBtn">Rainbow Color</button>
+    <button id="resetBtn">Reset</button>
+    <button id="backgroundColorBtn">Background Color</button>
   </div>
   
 
