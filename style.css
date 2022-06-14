@@ -1,12 +1,52 @@
-.grid-container {
-  display: grid;
-  width: 500px;
-  height: 500px;
-  border: 1px solid;  
+body {
+  background-color: gainsboro;
 }
 
 
 
+.grid-container {
+  display: grid;
+  margin: auto;
+  margin-top: 50px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid;
+  justify-content: center;
+  border: black solid;
+}
+
+.set-buttons {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+.gridInput {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
 .grid-element:hover {
   background-color: aqua;
+}
+
+.color {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  
+}
+
+#color {
+  align-items: center;
+}
+
+h1 {
+  
+  text-align: center;
+  padding-top: 50px;
 }
